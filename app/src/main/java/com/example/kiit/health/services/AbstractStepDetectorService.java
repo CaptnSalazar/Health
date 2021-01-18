@@ -27,7 +27,6 @@ import com.example.kiit.health.R;
 import com.example.kiit.health.activities.MainActivity;
 import com.example.kiit.health.models.StepCount;
 import com.example.kiit.health.persistence.StepCountPersistenceHelper;
-import com.example.kiit.health.persistence.TrainingPersistenceHelper;
 import com.example.kiit.health.persistence.WalkingModePersistenceHelper;
 import com.example.kiit.health.utils.StepDetectionServiceHelper;
 import com.example.kiit.health.utils.UnitHelper;
@@ -80,11 +79,9 @@ public abstract class AbstractStepDetectorService extends IntentService implemen
      */
     private int total_steps = 0;
 
-    /**
-     * Creates an IntentService.  Invoked by your subclass's constructor.
-     *
-     * @param name Used to name the worker thread, important only for debugging.
-     */
+    public AbstractStepDetectorService(){
+        super("AbstractStepDetectorService");
+    }
     public AbstractStepDetectorService(String name) {
         super(name);
     }
@@ -308,11 +305,10 @@ public abstract class AbstractStepDetectorService extends IntentService implemen
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         boolean useWakeLock = sharedPref.getBoolean(getString(R.string.pref_use_wake_lock), false);
         boolean useWakeLockDuringTraining = sharedPref.getBoolean(getString(R.string.pref_use_wake_lock_during_training), true);
-        boolean isTrainingActive = TrainingPersistenceHelper.getActiveItem(getApplicationContext()) != null;
-        if(mWakeLock == null && (useWakeLock || (useWakeLockDuringTraining && isTrainingActive))) {
+         if(mWakeLock == null && (useWakeLock || (useWakeLockDuringTraining ))) {
             acquireWakeLock();
         }
-        if(mWakeLock != null && !(useWakeLock || (useWakeLockDuringTraining && isTrainingActive))){
+        if(mWakeLock != null && !(useWakeLock || (useWakeLockDuringTraining ))){
             releaseWakeLock();
         }
     }

@@ -151,6 +151,44 @@
                             android:layout_toRightOf="@+id/distanceCount"
                             android:textColor="@color/darkgrey" />
                     </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/calorieIcon"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/ic_fire_65black_40dp" />
+
+                        <TextView
+                            android:id="@+id/calorieCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_toEndOf="@+id/calorieIcon"
+                            android:layout_toRightOf="@+id/calorieIcon"
+                            android:textColor="@color/darkgrey" />
+
+                        <TextView
+                            android:id="@+id/calorieTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/calorieCount"
+                            android:layout_marginLeft="1sp"
+                            android:layout_marginStart="1sp"
+                            android:layout_toEndOf="@+id/calorieCount"
+                            android:layout_toRightOf="@+id/calorieCount"
+                            android:text="@string/summary_card_kilocalories"
+                            android:textColor="@color/darkgrey" />
+                    </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

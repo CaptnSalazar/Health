@@ -74,8 +74,7 @@ public class WeeklyReportFragment extends Fragment implements ReportAdapter.OnIt
         }
 
         @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            Log.e("SDF", "service connected");
+        public void onServiceConnected(ComponentName name, IBinder service) {Log.e("SDF", "service connected");
             myBinder = (AbstractStepDetectorService.StepDetectorBinder) service;
             generateReports(true);
         }
@@ -116,7 +115,6 @@ public class WeeklyReportFragment extends Fragment implements ReportAdapter.OnIt
         mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
 
         // specify an adapter
-
         // using sample data.
         day = Calendar.getInstance();
         generateReports(false);
@@ -316,7 +314,6 @@ public class WeeklyReportFragment extends Fragment implements ReportAdapter.OnIt
                             && day_iterating.get(Calendar.MONTH) == now.get(Calendar.MONTH)
                             && day_iterating.get(Calendar.DAY_OF_MONTH) == now.get(Calendar.DAY_OF_MONTH)){
 
-
                         StepCount stepCountSinceLastSave = new StepCount();
                         stepCountSinceLastSave.setStepCount(myBinder.stepsSinceLastSave());
                         stepCountSinceLastSave.setWalkingMode(WalkingModePersistenceHelper.getActiveMode(context)); // add current walking mode
@@ -395,7 +392,6 @@ public class WeeklyReportFragment extends Fragment implements ReportAdapter.OnIt
     public void onActivityChartDataTypeClicked(ActivityDayChart.DataType newDataType) {
         Log.i(LOG_TAG, "Changing  displayed data type to " + newDataType.toString());
         if (this.activityChart == null) {
-
             return;
         }
         if (this.activityChart.getDisplayedDataType() == newDataType) {

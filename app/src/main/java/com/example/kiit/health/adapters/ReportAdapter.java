@@ -302,11 +302,13 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
                 ActivitySummary summaryData = (ActivitySummary) mItems.get(position);
                 SummaryViewHolder summaryViewHolder = (SummaryViewHolder) holder;
                 UnitHelper.FormattedUnitPair distance = UnitHelper.formatKilometers(UnitHelper.metersToKilometers(summaryData.getDistance()), summaryViewHolder.itemView.getContext());
-                UnitHelper.FormattedUnitPair calories = UnitHelper.formatCalories(summaryData.getCalories(), summaryViewHolder.itemView.getContext());
+
                 summaryViewHolder.mTitleTextView.setText(summaryData.getTitle());
                 summaryViewHolder.mStepsTextView.setText(String.valueOf(summaryData.getSteps()));
                 summaryViewHolder.mDistanceTextView.setText(distance.getValue());
                 summaryViewHolder.mDistanceTitleTextView.setText(distance.getUnit());
+                summaryViewHolder.mCaloriesTextView.setText(String.valueOf(summaryData.getCalories()));
+                summaryViewHolder.mCaloriesTitleTextView.setText("cal");
                 summaryViewHolder.mNextButton.setVisibility(summaryData.isHasSuccessor() ? View.VISIBLE : View.INVISIBLE);
                 summaryViewHolder.mPrevButton.setVisibility(summaryData.isHasPredecessor() ? View.VISIBLE : View.INVISIBLE);
                 if(summaryData.getCurrentSpeed() != null){
@@ -384,7 +386,6 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
             context = itemView.getContext();
         }
     }
-
     public class SummaryViewHolder extends ViewHolder implements PopupMenu.OnMenuItemClickListener {
 
         public TextView mTitleTextView;
@@ -404,9 +405,11 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
             mTitleTextView = (TextView) itemView.findViewById(R.id.period);
             mStepsTextView = (TextView) itemView.findViewById(R.id.stepCount);
             mDistanceTextView = (TextView) itemView.findViewById(R.id.distanceCount);
+            mCaloriesTextView = (TextView) itemView.findViewById(R.id.calorieCount);
             mVelocityTextView = (TextView) itemView.findViewById(R.id.speed);
             mVelocityContainer = (RelativeLayout) itemView.findViewById(R.id.speedContainer);
             mDistanceTitleTextView = (TextView) itemView.findViewById(R.id.distanceTitle);
+            mCaloriesTitleTextView = (TextView) itemView.findViewById(R.id.calorieTitle);
             mPrevButton = (ImageButton) itemView.findViewById(R.id.prev_btn);
             mNextButton = (ImageButton) itemView.findViewById(R.id.next_btn);
             mMenuButton = (ImageButton) itemView.findViewById(R.id.periodMoreButton);
@@ -414,32 +417,32 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
             mMenuButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                showPopup(mMenuButton, context);
+                    showPopup(mMenuButton, context);
                 }
             });
 
             mPrevButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                if (mItemClickListener != null) {
-                    mItemClickListener.onPrevClicked();
-                }
+                    if (mItemClickListener != null) {
+                        mItemClickListener.onPrevClicked();
+                    }
                 }
             });
             mNextButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                if (mItemClickListener != null) {
-                    mItemClickListener.onNextClicked();
-                }
+                    if (mItemClickListener != null) {
+                        mItemClickListener.onNextClicked();
+                    }
                 }
             });
             mTitleTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                if (mItemClickListener != null) {
-                    mItemClickListener.onTitleClicked();
-                }
+                    if (mItemClickListener != null) {
+                        mItemClickListener.onTitleClicked();
+                    }
                 }
             });
         }

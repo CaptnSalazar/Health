@@ -32,7 +32,7 @@ public class StepCountPersistenceReceiver extends BroadcastReceiver {
             StepCountPersistenceHelper.storeStepCounts(service, context, oldWalkingMode);
             context.getApplicationContext().unbindService(mServiceConnection);
             StepDetectionServiceHelper.stopAllIfNotRequired(false, context);
-            WidgetReceiver.forceWidgetUpdate(context);
+
         }
     };
 

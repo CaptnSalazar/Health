@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.kiit.health.tutorial.TutorialActivity;
+import com.example.kiit.health.activities.MainActivity;
 
 
 
@@ -15,7 +15,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent mainIntent = new Intent(SplashActivity.this, TutorialActivity.class);
+        Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
         SplashActivity.this.startActivity(mainIntent);
         SplashActivity.this.finish();
 

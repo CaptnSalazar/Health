@@ -48,7 +48,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 
-
 public class MonthlyReportFragment extends Fragment implements ReportAdapter.OnItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
     public static String LOG_TAG = WeeklyReportFragment.class.getName();
 
@@ -64,7 +63,6 @@ public class MonthlyReportFragment extends Fragment implements ReportAdapter.OnI
     private List<Object> reports = new ArrayList<>();
     private boolean generatingReports;
     private Map<Integer, WalkingMode> menuWalkingModes;
-
 
     private AbstractStepDetectorService.StepDetectorBinder myBinder;
     private ServiceConnection mServiceConnection = new ServiceConnection() {

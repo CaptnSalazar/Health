@@ -12,11 +12,9 @@ import android.util.Log;
 
 import com.example.kiit.health.Factory;
 import com.example.kiit.health.R;
-import com.example.kiit.health.persistence.TrainingPersistenceHelper;
 import com.example.kiit.health.receivers.HardwareStepCountReceiver;
 import com.example.kiit.health.receivers.MotivationAlertReceiver;
 import com.example.kiit.health.receivers.StepCountPersistenceReceiver;
-import com.example.kiit.health.receivers.WidgetReceiver;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -57,7 +55,6 @@ public class StepDetectionServiceHelper {
 
     public static void stopAllIfNotRequired(Context context){
         stopAllIfNotRequired(true, context);
-        WidgetReceiver.forceWidgetUpdate(context);
     }
 
     public static void stopAllIfNotRequired(boolean forceSave, Context context){
@@ -104,7 +101,7 @@ public class StepDetectionServiceHelper {
         Log.i(LOG_CLASS, "Started step detection service.");
         Intent stepDetectorServiceIntent = new Intent(context, Factory.getStepDetectorServiceClass(context.getPackageManager()));
             context.getApplicationContext().startService(stepDetectorServiceIntent);
-        WidgetReceiver.forceWidgetUpdate(context);
+
     }
 
     /**
@@ -205,7 +202,7 @@ public class StepDetectionServiceHelper {
         boolean isStepDetectionEnabled = sharedPref.getBoolean(context.getString(R.string.pref_step_counter_enabled), true);
         boolean isWalkingModeLearningActive = sharedPref.getBoolean(context.getString(R.string.pref_walking_mode_learning_active), false);
         boolean isDistanceMeasurementActive = sharedPref.getLong(context.getString(R.string.pref_distance_measurement_start_timestamp), -1) > 0;
-        return isStepDetectionEnabled || (TrainingPersistenceHelper.getActiveItem(context) != null) || isWalkingModeLearningActive || isDistanceMeasurementActive;
+        return isStepDetectionEnabled  || isWalkingModeLearningActive || isDistanceMeasurementActive;
     }
 
     /**
@@ -218,8 +215,8 @@ public class StepDetectionServiceHelper {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         boolean isWalkingModeLearningActive = sharedPref.getBoolean(context.getString(R.string.pref_walking_mode_learning_active), false);
         boolean isDistanceMeasurementActive = sharedPref.getLong(context.getString(R.string.pref_distance_measurement_start_timestamp), -1) > 0;
-        boolean isTrainingActive = (TrainingPersistenceHelper.getActiveItem(context) != null);
-        return isTrainingActive || isWalkingModeLearningActive || isDistanceMeasurementActive;
+
+        return  isWalkingModeLearningActive || isDistanceMeasurementActive;
 
     }
 

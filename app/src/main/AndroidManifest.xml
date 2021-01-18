@@ -1,47 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kiit.health">
-    <supports-screens
-        android:anyDensity="true"
-        android:largeScreens="true"
-        android:normalScreens="true"
-        android:resizeable="true"
-        android:smallScreens="true"
-        android:xlargeScreens="true"/>
-
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon"
-        android:label="Step Counter"
+        android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activities.SplashActivity"
-            android:theme="@style/SplashTheme">
+        <activity android:name=".Food"></activity>
+        <activity android:name=".login.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tutorial.TutorialActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".login.ResetPasswordActivity" />
+        <activity android:name=".login.SignUpActivity" />
+        <activity android:name=".activities.RexDashboardActivity">
+
         </activity>
         <activity
+            android:name=".activities.SplashActivity"
+            android:theme="@style/SplashTheme" />
+        <activity android:name=".activities.DietActivity" />
+        <activity android:name=".activities.ProfileActivity" />
+        <activity android:name=".activities.MoreInfo" />
+        <activity
             android:name=".activities.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
-
+            android:label="@string/app_name" />
         <activity
             android:name=".activities.PreferencesActivity"
             android:label="@string/action_settings"
@@ -60,8 +48,8 @@
         </activity>
         <activity
             android:name=".activities.WalkingModesActivity"
-            android:label="@string/activity_title_walking_modes"
             android:configChanges="orientation|screenSize|keyboard"
+            android:label="@string/activity_title_walking_modes"
             android:parentActivityName=".activities.PreferencesActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -83,12 +71,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
-        <activity android:name=".activities.WidgetConfigureActivity">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
-            </intent-filter>
-        </activity>
+        <activity android:name=".hydration.MainWindow.MainActivity" />
+        <activity android:name=".hydration.WaterDrankHistory.DateLogActivity" />
+        <activity android:name=".hydration.WaterDrankHistory.TimeLogActivity" />
+        <activity android:name=".hydration.Settings.SettingsActivity" />
 
+        <receiver android:name=".hydration.Notifications.NotificationReciever" />
+        <receiver android:name=".hydration.BroadcastReceivers.DateLogBroadcastReceiver" />
+        <receiver android:name=".hydration.BroadcastReceivers.StopNotificationBroadcastReceiver" />
+        <receiver
+            android:name=".hydration.BroadcastReceivers.BootBroadcastReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
         <receiver android:name=".receivers.OnBootCompletedBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -111,21 +108,16 @@
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="org.secuso.privacyfriendlystepcounter.WALKING_MODE_CHANGED" />
+                <action android:name=".WALKING_MODE_CHANGED" />
             </intent-filter>
         </receiver>
-        <receiver
-            android:name=".receivers.WidgetReceiver" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider" />
-        </receiver>
+        <receiver android:name=".receivers.MotivationAlertReceiver" />
+        <receiver android:name=".receivers.HardwareStepCountReceiver" />
 
-        <receiver android:name=".receivers.MotivationAlertReceiver"/>
-        <receiver android:name=".receivers.HardwareStepCountReceiver"/>
-
+        <service
+            android:name=".hydration.Widget.UpdateWidgetService"
+            android:enabled="true"
+            android:exported="true" />
         <service android:name=".services.HardwareStepCounterService" />
         <service android:name=".services.MovementSpeedService" />
         <service android:name=".services.AccelerometerStepDetectorService" />
@@ -133,8 +125,24 @@
             android:name=".services.HardwareStepDetectorService"
             android:stopWithTask="false" />
         <service
-            android:foregroundServiceType="location"
-            android:name=".services.AbstractStepDetectorService" />
+            android:name=".services.AbstractStepDetectorService"
+            android:foregroundServiceType="location" />
     </application>
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

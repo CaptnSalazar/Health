@@ -52,6 +52,7 @@ import java.util.TimeZone;
 
 import static java.security.AccessController.getContext;
 
+
 public class DailyReportFragment extends Fragment implements ReportAdapter.OnItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
     public static String LOG_TAG = DailyReportFragment.class.getName();
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver();
@@ -306,7 +307,6 @@ public class DailyReportFragment extends Fragment implements ReportAdapter.OnIte
         m.set(Calendar.HOUR_OF_DAY, 0);
         m.set(Calendar.MINUTE, 0);
         m.set(Calendar.SECOND, 0);
-
 
         StepCount s = new StepCount();
         s.setStartTime(m.getTimeInMillis());
