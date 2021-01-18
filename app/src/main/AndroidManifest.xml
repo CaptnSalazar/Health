@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kiit.health">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon"
@@ -63,6 +71,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.WalkingModesActivity" />
         </activity>
+
         <activity
             android:name=".activities.DistanceMeasurementActivity"
             android:label="@string/action_distance_measurement"
@@ -71,10 +80,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
-        <activity android:name=".hydration.MainWindow.MainActivity" />
-        <activity android:name=".hydration.WaterDrankHistory.DateLogActivity" />
-        <activity android:name=".hydration.WaterDrankHistory.TimeLogActivity" />
-        <activity android:name=".hydration.Settings.SettingsActivity" />
+        <activity android:name=".hydration.MainWindow.MainActivity"
+            android:theme="@style/hydrationtheme"/>
+        <activity android:name=".hydration.WaterDrankHistory.DateLogActivity"
+            android:theme="@style/hydrationtheme"/>
+        <activity android:name=".hydration.WaterDrankHistory.TimeLogActivity"
+            android:theme="@style/hydrationtheme"/>
+        <activity android:name=".hydration.Settings.SettingsActivity"
+            android:theme="@style/hydrationtheme"/>
         <activity android:name=".yoga.DashExerciseActivity">
 
         </activity>
@@ -90,10 +103,13 @@
 
 
         <receiver android:name=".hydration.Notifications.NotificationReciever" />
-        <receiver android:name=".hydration.BroadcastReceivers.DateLogBroadcastReceiver" />
-        <receiver android:name=".hydration.BroadcastReceivers.StopNotificationBroadcastReceiver" />
+        <receiver android:name=".hydration.BroadcastReceivers.DateLogBroadcastReceiver"
+            android:theme="@style/hydrationtheme"/>
+        <receiver android:name=".hydration.BroadcastReceivers.StopNotificationBroadcastReceiver"
+            android:theme="@style/hydrationtheme"/>
         <receiver
             android:name=".hydration.BroadcastReceivers.BootBroadcastReceiver"
+            android:theme="@style/hydrationtheme"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -129,6 +145,7 @@
 
         <service
             android:name=".hydration.Widget.UpdateWidgetService"
+            android:theme="@style/hydrationtheme"
             android:enabled="true"
             android:exported="true" />
         <service android:name=".services.HardwareStepCounterService" />
@@ -149,13 +166,5 @@
         android:resizeable="true"
         android:smallScreens="true"
         android:xlargeScreens="true" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

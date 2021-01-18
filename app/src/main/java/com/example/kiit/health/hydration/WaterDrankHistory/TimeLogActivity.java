@@ -178,13 +178,13 @@ public class TimeLogActivity extends AppCompatActivity implements View.OnClickLi
         int id = view.getId();
         switch (id) {
             case R.id.water_bottle_button:
-               addBottle();
+                addBottle();
                 break;
             case R.id.water_bottle_button2:
                 updateToBottle();
                 break;
             case R.id.water_glass_button:
-              addGlass();
+                addGlass();
                 break;
             case R.id.water_glass_button2:
                 updateToGlass();
@@ -204,7 +204,7 @@ public class TimeLogActivity extends AppCompatActivity implements View.OnClickLi
                 showNumberPickerDialogToUpdate();
                 break;
             case R.id.set_button:
-            addFromNumberPiker();
+                addFromNumberPiker();
                 break;
             case R.id.set_button2:
                 updateFromNumberPiker();
@@ -228,7 +228,7 @@ public class TimeLogActivity extends AppCompatActivity implements View.OnClickLi
         addDrinkdialog.dismiss();
         showTimePickerDialog();
 
-}
+    }
 
     private void addBottle() {
         amountToInsert=bottleSize;
@@ -253,14 +253,14 @@ public class TimeLogActivity extends AppCompatActivity implements View.OnClickLi
         db.updateConsumedWaterInDateLog(-removedValue,date);
         db.updateTimeLog(ID,glassSize,"glass");
         db.updateConsumedWaterInDateLog( glassSize,date);
-         playSound();
+        playSound();
         updateDrinkDialog.dismiss();
         updateViews();
 
 
     }
     private void updateToBottle() {
-      int v=  db.updateConsumedWaterInDateLog(- removedValue,date);
+        int v=  db.updateConsumedWaterInDateLog(- removedValue,date);
         db.updateTimeLog(ID,bottleSize,"bottle");
         db.updateConsumedWaterInDateLog( bottleSize,date);
         playSound();
@@ -338,7 +338,7 @@ public class TimeLogActivity extends AppCompatActivity implements View.OnClickLi
             String addedTime = dateFormat.format(calendar.getTime());
             db.createTimeLog(amountToInsert,containerTyp, date, addedTime);
             db.updateConsumedWaterInDateLog( amountToInsert, date);
-             playSound();
+            playSound();
             updateViews();
             amountToInsert = 0;
         }
@@ -369,7 +369,7 @@ public class TimeLogActivity extends AppCompatActivity implements View.OnClickLi
 
             ImageView typ = (ImageView) itemView.findViewById(R.id.containerTyp);
             if(values.get(position).getContainerTyp().equals("glass"))
-            typ.setImageDrawable(getResources().getDrawable(R.drawable.water_glass,null));
+                typ.setImageDrawable(getResources().getDrawable(R.drawable.water_glass,null));
             if (values.get(position).getContainerTyp().equals("bottle"))
                 typ.setImageDrawable(getResources().getDrawable(R.drawable.water_bottle,null));
             if (values.get(position).getContainerTyp().equals("other"))
@@ -388,7 +388,7 @@ public class TimeLogActivity extends AppCompatActivity implements View.OnClickLi
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             removedValue=  values.get(position).getAmount();
-                           ID= (int) values.get(position).getID();
+                            ID= (int) values.get(position).getID();
 
                             showUpdateDrinkDialog();
                         }

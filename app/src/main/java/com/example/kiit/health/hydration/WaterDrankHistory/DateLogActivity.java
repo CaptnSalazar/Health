@@ -19,6 +19,21 @@ import com.github.lzyzsd.circleprogress.CircleProgress;
 
 import java.util.List;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.github.lzyzsd.circleprogress.CircleProgress;
+
+import java.util.List;
+
 
 public class DateLogActivity extends AppCompatActivity {
 
@@ -34,8 +49,8 @@ public class DateLogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         setContentView(R.layout.date_log_activity);
         setTitle("History");
 
@@ -110,9 +125,9 @@ public class DateLogActivity extends AppCompatActivity {
             int prcValue= waterDrank*100/waterNeed;
 
             if(prcValue>=100)
-             circleProgress.setProgress(100);
+                circleProgress.setProgress(100);
             else
-             circleProgress.setProgress(prcValue);
+                circleProgress.setProgress(prcValue);
 
             return itemView;
         }
@@ -123,4 +138,4 @@ public class DateLogActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-    }
+}
