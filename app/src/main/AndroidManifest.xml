@@ -75,6 +75,19 @@
         <activity android:name=".hydration.WaterDrankHistory.DateLogActivity" />
         <activity android:name=".hydration.WaterDrankHistory.TimeLogActivity" />
         <activity android:name=".hydration.Settings.SettingsActivity" />
+        <activity android:name=".yoga.DashExerciseActivity">
+
+        </activity>
+        <activity android:name=".yoga.TopSessionsActivity">
+        </activity>
+        <activity android:name=".yoga.PoseActivity" />
+        <activity android:name=".yoga.AddPoseActivity" />
+        <activity android:name=".yoga.TopPosesActivity" />
+        <activity android:name=".yoga.SessionActivity" />
+        <activity android:name=".yoga.AddSessionActivity" />
+        <activity android:name=".yoga.QuotationActivity" />
+        <activity android:name=".yoga.AddSetActivity" />
+
 
         <receiver android:name=".hydration.Notifications.NotificationReciever" />
         <receiver android:name=".hydration.BroadcastReceivers.DateLogBroadcastReceiver" />

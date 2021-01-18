@@ -55,6 +55,10 @@ public class RexDashboardActivity extends AppCompatActivity {
                 Intent i=new Intent(RexDashboardActivity.this,com.example.kiit.health.Food.class);
                 startActivity(i);
             });
+            yoga.setOnClickListener(v -> {
+                Intent i=new Intent(RexDashboardActivity.this,com.example.kiit.health.yoga.DashExerciseActivity.class);
+                startActivity(i);
+            });
             stepcount.setOnClickListener(v -> {
                 Intent i=new Intent(RexDashboardActivity.this,  SplashActivity.class);
                 startActivity(i);
